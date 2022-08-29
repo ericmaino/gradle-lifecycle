@@ -1,9 +1,13 @@
 plugins {
-    id 'nebula.gradle-git-scm' 
+    id 'org.ajoberstar.grgit' 
 }
 
-task.register('tagForRelease') {
+tasks.register('tagForRelease') {
     doFirst {
-        gitScm.tag("v${project.version}", "Tagged from Gradle task tagForRelease")
+        def releaseTag = "v${project.version}"
+        logger.info("Creating tag - ${releaseTag}")
+        grgit.tag.add(name: "v${project.version}", message: "Tagged from Gradle task tagForRelease")
+        logger.info("Pushing tag - ${releaseTag}")
+        grgit.push(refsOrSpecs: [releaseTag])
     }
 }
