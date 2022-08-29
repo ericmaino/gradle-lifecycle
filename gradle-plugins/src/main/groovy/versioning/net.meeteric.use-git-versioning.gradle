@@ -1,0 +1,29 @@
+plugins {
+    id 'me.qoomon.git-versioning' 
+}
+
+def majorVersion = 0
+def minorVersion = 0
+
+def tagPattern = "v(?<version>${majorVersion}\\.${minorVersion}\\..+)"
+
+gitVersioning.apply {
+    describeTagPattern = tagPattern
+    refs {
+        tag(tagPattern) {
+            version = '${ref.version}'
+        }
+        branch('main') {
+            considerTagsOnBranches = true
+            version = '${describe.tag.version.major}.${describe.tag.version.minor}.${describe.tag.version.patch.next}'
+        }
+        branch('.+') {
+            version = '${describe.tag.version.major}.${describe.tag.version.minor}.${describe.tag.version.patch.next}-${ref.slug}.${describe.distance}.${commit.short}'
+        }
+    }
+    // fallback configuration in case of no matching ref configuration
+    rev {
+        describeTagPattern = "v(?<version>.*)"
+        version = '${describe.tag.version.major}.${describe.tag.version.minor}.${describe.tag.version.patch.next}${dirtry}-${describe.distance}-${commit.short}'
+    }
+}

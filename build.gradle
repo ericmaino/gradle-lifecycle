@@ -1,3 +1,4 @@
 plugins {
+    id 'net.meeteric.use-git-versioning'
     id 'net.meeteric.composite-root'
 }
