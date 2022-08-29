@@ -8,4 +8,6 @@
  */
 
 rootProject.name = 'gradle-lifecycle'
+
+includeBuild('gradle-plugins')
 include('app', 'list', 'utilities')
