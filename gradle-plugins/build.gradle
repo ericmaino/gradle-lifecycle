@@ -9,3 +9,18 @@ repositories {
     // Use the plugin portal to apply community plugins in convention plugins.
     gradlePluginPortal()
 }
+
+
+gradlePlugin{
+    plugins {
+        cascadeMultiProjectTasks {
+            id = 'net.meeteric.plugins.cascade-multi-project-tasks'
+            implementationClass = 'net.meeteric.gradle.plugins.CascadingTasksMultiProjectPlugin'
+        }
+
+       cascadeCompositeProjectTasks {
+            id = 'net.meeteric.plugins.cascade-composite-project-tasks'
+            implementationClass = 'net.meeteric.gradle.plugins.CascadingTasksCompositeProjectPlugin'
+        }
+    }
+}

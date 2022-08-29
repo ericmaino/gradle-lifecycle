@@ -1,0 +1,4 @@
+plugins
+{
+    id 'net.meeteric.plugins.cascade-multi-project-tasks'
+}
