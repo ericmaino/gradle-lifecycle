@@ -4,6 +4,6 @@ plugins {
 
 tasks.register('tagForRelease') {
     doFirst {
-        grgit.tag(name: "v${project.version}", message: "Tagged from Gradle task tagForRelease")
+        grgit.tag.add(name: "v${project.version}", message: "Tagged from Gradle task tagForRelease")
     }
 }
