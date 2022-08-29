@@ -1,0 +1,9 @@
+plugins {
+    id 'nebula.gradle-git-scm' 
+}
+
+task.register('tagForRelease') {
+    doFirst {
+        gitScm.tag("v${project.version}", "Tagged from Gradle task tagForRelease")
+    }
+}

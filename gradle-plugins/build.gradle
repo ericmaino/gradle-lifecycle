@@ -27,4 +27,5 @@ gradlePlugin{
 
 dependencies {
     implementation group: 'me.qoomon.git-versioning',        name: 'me.qoomon.git-versioning.gradle.plugin',     version: '[6.3.0,)'
-}
+    implementation group: 'nebula.gradle-git-scm',           name: 'nebula.gradle-git-scm.gradle.plugin',        version: '[5.0.0,)'
+}    
