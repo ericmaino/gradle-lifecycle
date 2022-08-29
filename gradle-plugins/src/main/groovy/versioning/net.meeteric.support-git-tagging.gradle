@@ -2,7 +2,7 @@ plugins {
     id 'org.ajoberstar.grgit' 
 }
 
-task.register('tagForRelease') {
+tasks.register('tagForRelease') {
     doFirst {
         grgit.tag(name: "v${project.version}", message: "Tagged from Gradle task tagForRelease")
     }
