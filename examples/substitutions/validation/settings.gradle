@@ -1,0 +1,5 @@
+rootProject.name = 'validation'
+
+println "Intit Start - ${rootProject.name}"
+includeBuild('../../../gradle-plugins')
+includeBuild('bom-parent')

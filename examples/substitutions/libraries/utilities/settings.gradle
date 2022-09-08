@@ -1,0 +1,5 @@
+rootProject.name = 'utilities'
+
+println "Intit Start - ${rootProject.name}"
+includeBuild('../../../../gradle-plugins')
+includeBuild('../list')

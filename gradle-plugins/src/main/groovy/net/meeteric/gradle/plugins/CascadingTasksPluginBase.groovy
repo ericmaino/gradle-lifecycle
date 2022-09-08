@@ -33,14 +33,17 @@ abstract class CascadingTasksPluginBase implements Plugin<Project> {
 
     @Override
     void apply(Project project) {
-        registerTask('build', BUILD_GROUP, 'Assembles and tests all composite projects', project)
-        registerTask('clean', BUILD_GROUP, 'Deletes to build directory for all composite projects', project)
-        registerTask('test', VERIFICATION_GROUP, 'Runs tests for all composite projects', project)
-        registerTask('publish', PUBLISHING_GROUP, 'Publishes all composite projects', project)
-        registerTask('publishToMavenLocal', PUBLISHING_GROUP, 'Publishes all composite projects to maven local', project)
-        registerTask('assemble', BUILD_GROUP, 'Assembles the output of all composite projects', project)
-        registerTask('generateLock', LOCKING_GROUP, 'Create a new lock files in build/<configured name>',  project)
-        registerTask('saveLock', LOCKING_GROUP, 'Moves the generated lock into the active lock', project)
+        project.afterEvaluate {
+            project.logger.quiet("Applying Cascading Plugin - ${project.name}")
+            registerTask('build', BUILD_GROUP, 'Assembles and tests all composite projects', project)
+            registerTask('clean', BUILD_GROUP, 'Deletes to build directory for all composite projects', project)
+            registerTask('test', VERIFICATION_GROUP, 'Runs tests for all composite projects', project)
+            registerTask('publish', PUBLISHING_GROUP, 'Publishes all composite projects', project)
+            registerTask('publishToMavenLocal', PUBLISHING_GROUP, 'Publishes all composite projects to maven local', project)
+            registerTask('assemble', BUILD_GROUP, 'Assembles the output of all composite projects', project)
+            registerTask('generateLock', LOCKING_GROUP, 'Create a new lock files in build/<configured name>',  project)
+            registerTask('saveLock', LOCKING_GROUP, 'Moves the generated lock into the active lock', project)
+        }
     }
 
 }

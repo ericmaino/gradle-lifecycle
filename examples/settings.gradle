@@ -2,3 +2,4 @@ rootProject.name = 'application'
 
 includeBuild('../gradle-plugins')
 includeBuild('application')
+includeBuild('substitutions')

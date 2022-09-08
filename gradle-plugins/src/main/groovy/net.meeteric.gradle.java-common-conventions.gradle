@@ -5,7 +5,10 @@
 plugins {
     // Apply the java Plugin to add support for Java.
     id 'java'
+    id 'net.meeteric.lifecycle-log'
 }
+
+group = "net.meeteric.examples"
 
 repositories {
     // Use Maven Central for resolving dependencies.
@@ -25,11 +28,4 @@ dependencies {
 tasks.named('test') {
     // Use JUnit Platform for unit tests.
     useJUnitPlatform()
-}
-
-
-project.logger.quiet("config - ${project.name}")
-
-project.afterEvaluate {
-    project.logger.quiet("afterEvaluate - ${project.name}")
 }
