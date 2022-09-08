@@ -1,0 +1,21 @@
+configurations {
+    resolvedVersionApi
+}
+
+project.logger.quiet("Using resolved versions")
+
+project.afterEvaluate {
+    project.logger.quiet("Resolving versions")
+
+    def constraints = dependencies.constraints
+    
+    println configurations.resolvedVersionApi.resolvedConfiguration.lenientConfiguration
+    
+    configurations.resolvedVersionApi.resolvedConfiguration.lenientConfiguration.unresolvedModuleDependencies.each {
+        project.logger.error("ERROR: Failed to resolved '${it}'")
+        throw new GradleException("Failed to resolve modules")
+    }
+    configurations.resolvedVersionApi.resolvedConfiguration.lenientConfiguration.firstLevelModuleDependencies.each {
+        project.logger.quiet("${it.module}")
+    }
+}
