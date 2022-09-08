@@ -26,3 +26,10 @@ tasks.named('test') {
     // Use JUnit Platform for unit tests.
     useJUnitPlatform()
 }
+
+
+project.logger.quiet("config - ${project.name}")
+
+project.afterEvaluate {
+    project.logger.quiet("afterEvaluate - ${project.name}")
+}

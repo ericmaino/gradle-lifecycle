@@ -1,5 +1,4 @@
 rootProject.name = 'application'
 
 includeBuild('../gradle-plugins')
-
-include('app','list','utilities')
+includeBuild('application')
