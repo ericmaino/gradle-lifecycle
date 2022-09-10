@@ -1,0 +1,67 @@
+plugins 
+{
+    id 'java-platform'
+    id 'net.meeteric.task-tree'
+    id 'maven-publish'
+}
+
+repositories {
+    mavenCentral()
+}
+
+group = "net.meeteric.examples"
+version = "0.0.1"
+
+
+dependencies {
+   constraints {
+      api("org.apache.commons:commons-lang3:3.+")
+   }
+}
+
+configurations {
+    apiResolved {
+        extendsFrom(api)
+        canBeConsumed = false
+        canBeResolved = true
+        attributes {
+            attribute(Usage.USAGE_ATTRIBUTE, project.objects.named(Usage, 'java-api'))
+        }
+    }
+}
+
+def handler = project.dependencies
+configurations.api.dependencyConstraints.each {
+    configurations.apiResolved.dependencies.add(handler.create("${it.module}"))
+}
+
+// dependencies {
+//     apiResolved("org.apache.commons:commons-lang3")
+// }
+
+configurations.apiResolved.resolvedConfiguration.lenientConfiguration.firstLevelModuleDependencies.each {
+                println "X ${it}"
+}
+
+configurations.apiResolved.resolvedConfiguration.lenientConfiguration.unresolvedModuleDependencies.each {
+                println it
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            from components.javaPlatform
+            versionMapping {
+                usage('java-api') {
+                    fromResolutionOf('apiResolved')
+                }
+            }
+        }
+    }
+}
+
+println project.publishing.publications[0].versionMapping{
+    usage('java-api'){
+        fromResolutionOf('apiResolved')
+    }
+}

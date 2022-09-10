@@ -28,4 +28,5 @@ gradlePlugin{
 dependencies {
     implementation group: 'me.qoomon.git-versioning',        name: 'me.qoomon.git-versioning.gradle.plugin',        version: '[6.3.0,)'
     implementation group: 'org.ajoberstar.grgit' ,           name: 'grgit-gradle',                                    version: '[5.0.0,)'
+    implementation "com.dorongold.plugins:task-tree:2.1.0"
 }    
