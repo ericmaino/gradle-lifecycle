@@ -1,0 +1,6 @@
+rootProject.name = 'bom-parent'
+
+println "Intit Start - ${rootProject.name}"
+includeBuild('../../../../gradle-plugins')
+includeBuild('../../libraries')
+include('bom')

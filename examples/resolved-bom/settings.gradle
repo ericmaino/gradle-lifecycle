@@ -1,0 +1,5 @@
+rootProject.name = 'application'
+
+includeBuild('../../gradle-plugins')
+include('bom')
+include('library')
