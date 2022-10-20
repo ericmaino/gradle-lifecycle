@@ -5,7 +5,10 @@
 plugins {
     // Apply the java Plugin to add support for Java.
     id 'java'
+    id 'net.meeteric.lifecycle-log'
 }
+
+group = "net.meeteric.examples"
 
 repositories {
     // Use Maven Central for resolving dependencies.

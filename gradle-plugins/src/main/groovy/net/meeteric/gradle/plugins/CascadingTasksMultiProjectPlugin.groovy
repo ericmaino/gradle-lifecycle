@@ -17,8 +17,10 @@ class CascadingTasksMultiProjectPlugin extends CascadingTasksPluginBase {
                 def foundTask = project.tasks.findByPath(taskName)
 
                 if (foundTask) {
-                    LOGGER.debug("Mapping task '${taskName}' from '${currentProject.name}' to '${project.name}'")
+                    LOGGER.info("Mapping task '${taskName}' from '${currentProject.name}' to '${project.name}'")
                     dependsOn foundTask
+                } else {
+                    LOGGER.quiet("Skipping task '${taskName}' from '${currentProject.name}' to '${project.name}'")
                 }
             }
         }

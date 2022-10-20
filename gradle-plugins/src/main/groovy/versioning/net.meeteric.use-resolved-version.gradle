@@ -1,0 +1,32 @@
+//import org.gradle.api.attributes.Category
+
+configurations {
+    resolvedVersionApi {
+        attributes {
+            attribute(Category.CATEGORY_ATTRIBUTE, project.objects.named(Category.class, Category.REGULAR_PLATFORM))
+            attribute(Usage.USAGE_ATTRIBUTE, project.objects.named(Usage.class, Usage.JAVA_API))
+        }
+    }
+    apiElements {
+        canBeConsumed = false
+    }
+}
+
+// project.logger.quiet("Using resolved versions")
+
+def createPublication = tasks.findByName('publishToMavenLocal')
+
+if (createPublication)
+{
+    tasks.register("useResolvedApisInConfiguration") {
+        doFirst {
+            project.logger.quiet("Resolving Versions")
+            def constraints = configurations.apiElements.dependencyConstraints
+            configurations.resolvedVersionApi.resolvedConfiguration.lenientConfiguration.firstLevelModuleDependencies.each {
+                constraints.add(it)
+            }
+        }
+    }
+
+    createPublication.dependsOn useResolvedApisInConfiguration
+}
